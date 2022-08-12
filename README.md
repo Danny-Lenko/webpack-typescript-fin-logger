@@ -50,4 +50,5 @@ WEBPACK & TYPESCRIPT BUILD (Net Ninja)
 2) git add .;
 3) git commit -m "description message";
 4) create new repo on github;
-5) 
+5) git remote add origin https://github.com/DannyLenk/webpack-typescript-fin-logger.git
+6) git push -u origin main
