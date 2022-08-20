@@ -4,3 +4,7 @@ export interface UserData {
    details: string,
    amount: string
 }
+
+export interface HasFormatting {
+   format(): string
+}

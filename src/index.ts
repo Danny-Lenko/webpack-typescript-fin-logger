@@ -1,5 +1,6 @@
-import { displayPayment, displayInvoice } from "./utils"
-import { UserData } from "./interfaces"
+import {displayPayment, displayInvoice, displayDocument} from "./utils"
+import {HasFormatting, UserData} from "./interfaces"
+import {Invoice, Payment} from "./classes";
 
 const formEl = document.querySelector('form')!
 const selectEl = document.querySelector('#type')! as HTMLSelectElement
@@ -34,17 +35,29 @@ function organizeUserInputs(
 }
 
 function displayRecord(obj: UserData) {
-   const liEl = document.createElement('li')
-   let content: string
+   let doc: HasFormatting = {format(): string {
+      return 'hello world'
+   }}
 
    if (obj.type === 'invoice') {
-      content = displayInvoice(obj)
-   } else {
-      content = displayPayment(obj)
+      doc = new Invoice(obj)
+   } else if (obj.type === 'payment') {
+      doc = new Payment(obj)
    }
 
-   liEl.innerHTML = content
-   logsEl.prepend(liEl)
+   displayDocument(doc, 'start', logsEl)
+
+
+   // let content: string
+   //
+   // if (obj.type === 'invoice') {
+   //    content = displayInvoice(obj)
+   // } else {
+   //    content = displayPayment(obj)
+   // }
+   //
+   // liEl.innerHTML = content
+   // logsEl.prepend(liEl)
 }
 
 
